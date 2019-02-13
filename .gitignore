@@ -1,0 +1,85 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# misc
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OSX
+#
+.DS_Store
+
+# Xcode
+#
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.dSYM.zip
+*.xcuserstate
+
+# Android/IntelliJ
+#
+build/
+.idea
+.gradle
+local.properties
+*.iml
+android/secure
+.project
+.settings/
+.classpath
+
+# node.js
+#
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# BUCK
+buck-out/
+\.buckd/
+
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Gitignore.md
+
+ios/fastlane/README.md
+ios/fastlane/report.xml
+ios/fastlane/Preview.html
+ios/fastlane/screenshots
+
+android/fastlane/README.md
+android/fastlane/report.xml
+android/fastlane/Preview.html
+android/fastlane/screenshots
+
+# Android fastfile copied from ios fastfile in fastlane wrapping script
+android/fastlane/Fastfile
+
+yarn.lock
+
+app/assets/generatedReactNativeSvg
+SvgIcons.generated.js
+TEDMasterclass/app/lessonSystem/lessonsConfig.generated.js
+TEDMasterclass/app/lessonSystem/lessonsConfigStage2.generated.js
+
+
+android/app/src/main/java
