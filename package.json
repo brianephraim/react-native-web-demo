@@ -6,7 +6,9 @@
   "scripts": {
     "watch:web": "webpack-dev-server --config ./features/bundling/webpack.dev.js --hot --mode development",
     "build:dev": "webpack --config webpack.dev.js --mode development",
-    "build:web": "webpack --config webpack.prod.js --mode production"
+    "build:web": "webpack --config webpack.prod.js --mode production",
+    "eslint": "./node_modules/.bin/eslint ./",
+    "prettier": "./node_modules/.bin/prettier --single-quote --trailing-comma es5 --write \"features/**/*.js\" \"index.web.js\""
   },
   "dependencies": {
     "babel-loader": "^8.0.5",
@@ -31,6 +33,18 @@
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.14",
-    "webpack-merge": "^4.2.1"
+    "webpack-merge": "^4.2.1",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^4.15.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-babel": "^5.2.1",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1",
+    "eslint-plugin-react-native": "^3.5.0",
+    "eslint-plugin-react-perf": "^2.0.9",
+    "prettier": "^1.10.2"
   }
 }

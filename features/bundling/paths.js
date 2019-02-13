@@ -11,7 +11,7 @@ const path = require('path');
 
 const rootDirectoryPath = path.resolve(__dirname, '../../');
 
-function makeRootRelativePath(pathToAppend){
+function makeRootRelativePath(pathToAppend) {
   return path.resolve(__dirname, `${rootDirectoryPath}/${pathToAppend}`);
 }
 
@@ -28,11 +28,14 @@ const pathDictPreProcessed = {
   font: 'features/bundling/font.js',
   dist: 'dist',
   templateHtml: 'features/bundling/template.html',
-  nodeModules: 'node_modules'
+  nodeModules: 'node_modules',
 };
 
-module.exports = Object.keys(pathDictPreProcessed).reduce((accum,key) => {
-  const pathToAppend = pathDictPreProcessed[key];
-  accum[`${key}Path`] = makeRootRelativePath(pathToAppend);
-  return accum;
-},{rootDirectoryPath})
+module.exports = Object.keys(pathDictPreProcessed).reduce(
+  (accum, key) => {
+    const pathToAppend = pathDictPreProcessed[key];
+    accum[`${key}Path`] = makeRootRelativePath(pathToAppend);
+    return accum;
+  },
+  { rootDirectoryPath }
+);

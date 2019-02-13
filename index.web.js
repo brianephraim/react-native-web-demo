@@ -4,7 +4,7 @@ import { AppContainer } from 'react-hot-loader';
 // import App from 'shared/components/SharedComponent';
 // import App from 'shared/components/PlatformSpecific/PlatformComponent';
 // import App from './AppsNavigator.web';
-import App from './features/asdf'
+import App from './features/asdf';
 
 const renderApp = () => (
   <AppContainer>

@@ -1,21 +1,21 @@
 const path = require('path');
 const fs = require('fs');
-const {rootDirectoryPath,entryFilePath,featuresPath,vectorIconsPath} = require('./paths');
-
+const {
+  rootDirectoryPath,
+  entryFilePath,
+  featuresPath,
+  vectorIconsPath,
+} = require('./paths');
 
 const babelLoaderConfiguration = {
   test: /\.js$/,
-  include: [
-    entryFilePath,
-    featuresPath,
-    vectorIconsPath
-  ],
+  include: [entryFilePath, featuresPath, vectorIconsPath],
   use: {
     loader: 'babel-loader',
     options: {
       cacheDirectory: true,
       plugins: ['react-native-web', 'syntax-dynamic-import'],
-      presets: ['@babel/preset-env','module:metro-react-native-babel-preset'],
+      presets: ['@babel/preset-env', 'module:metro-react-native-babel-preset'],
     },
   },
 };
@@ -32,12 +32,15 @@ const imageLoaderConfiguration = {
 };
 const fontLoaderConfiguration = {
   test: /\.ttf$/,
-  loader: "url-loader", // or directly file-loader
-  include: path.resolve(__dirname, `${rootDirectoryPath}/node_modules/react-native-vector-icons`),
-}
+  loader: 'url-loader', // or directly file-loader
+  include: path.resolve(
+    __dirname,
+    `${rootDirectoryPath}/node_modules/react-native-vector-icons`
+  ),
+};
 
 module.exports = {
   imageLoaderConfiguration,
   babelLoaderConfiguration,
-  fontLoaderConfiguration
+  fontLoaderConfiguration,
 };
