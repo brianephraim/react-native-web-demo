@@ -1,15 +1,15 @@
 import React, { PureComponent } from 'react';
 import ReduxProvider from './appRedux/ReduxProvider';
-import BrowseNewsScreen from './BrowseNewsScreen';
+import NewsList from './NewsList';
 
 class AppEntry extends PureComponent {
   render() {
     return (
       <ReduxProvider>
-        <BrowseNewsScreen />
+        <NewsList />
       </ReduxProvider>
     );
   }
 }
-/*  */
+
 export default AppEntry;

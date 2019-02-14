@@ -2,15 +2,22 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Text, View, StyleSheet, FlatList, Image } from 'react-native';
 import withNewsData from './withNewsData';
+import NewsSearchBar from './NewsSearchBar';
 
 const styles = StyleSheet.create({
   list: {
-    flex: 1,
     backgroundColor: '#EDECEC',
     width: '100%',
+    paddingBottom: 26,
+  },
+  columnWrapperStyle: {
+    width:'100%',
+    minWidth: 670,
+    maxWidth: 1040,
+    alignSelf:'center',
+    paddingTop: 26,
     paddingLeft: 37,
     paddingRight: 33,
-    paddingTop: 26,
   },
   item: {
     paddingHorizontal: 8,
@@ -22,6 +29,7 @@ const styles = StyleSheet.create({
   itemInner: {
     flex: 1,
     backgroundColor: '#FFFFFF',
+    justifyContent: 'space-between',
   },
   image: { paddingTop: '56.25%', width: '100%' },
   header: {
@@ -46,6 +54,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#313131',
     alignSelf: 'flex-start',
     marginHorizontal: 47,
+    marginBottom: 46,
     color: '#ffffff',
     minWidth: 146,
     height: 40,
@@ -56,36 +65,27 @@ const styles = StyleSheet.create({
   },
 });
 
-let i = 0;
-const listData = [];
-while (i++ < 1000) {
-  listData.push({ key: `key_${i}`, value: `value_${i}` });
-}
+const stickyHeaderIndices = [0];
 class NewsList extends PureComponent {
-  constructor() {
-    super();
-    this.state = {
-      articlesColumns: [],
-    };
-  }
   static propTypes = {
     articles: PropTypes.array.isRequired,
   };
   keyExtractor = item => {
     return item.title;
   };
-
   renderItem = ({ item }) => {
     return (
       <View style={styles.item}>
         <View style={styles.itemInner}>
-          <Image style={styles.image} source={item.uriObject} />
-          <Text style={styles.header} numberOfLines={1}>
-            {item.title}
-          </Text>
-          <Text style={styles.text} numberOfLines={2}>
-            {item.content ? item.content.split('[+')[0] : item.description}
-          </Text>
+          <View>
+            <Image style={styles.image} source={item.uriObject} />
+            <Text style={styles.header} numberOfLines={1}>
+              {item.title}
+            </Text>
+            <Text style={styles.text} numberOfLines={2}>
+              {`${item.content.slice(0,180).trim()}...`}
+            </Text>
+          </View>
           <Text
             href={item.url}
             accessibilityRole="link"
@@ -94,27 +94,6 @@ class NewsList extends PureComponent {
           >
             Read More
           </Text>
-          {/* <Text>author: {item.author}</Text>
-          <View style={{
-            backgroundColor:'pink',
-            alignSelf:'center',
-            height:0,
-            paddingTop: '56.25%',
-            width: '100%',
-            borderWidth:1,
-            borderColor:'black',
-          }} />
-          <Image
-            style={{paddingTop: '56.25%',
-            width: '100%',}}
-            source={{uri: item.urlToImage}}
-          />
-          <Text>content: {item.content && item.content.substring(0, 100)}</Text>
-          <Text>publishedAt: {item.publishedAt}</Text>
-          <Text>title: {item.title}</Text>
-          <Text>url: {item.url}</Text>
-          <Text>urlToImage: {item.urlToImage}</Text>
-          <Text>source: {item.source.name}</Text> */}
         </View>
       </View>
     );
@@ -122,12 +101,14 @@ class NewsList extends PureComponent {
   render() {
     return (
       <FlatList
+        stickyHeaderIndices={stickyHeaderIndices}
+        ListHeaderComponent={NewsSearchBar}
         style={styles.list}
-        datax={this.state.articlesColumns}
         data={this.props.articles}
         renderItem={this.renderItem}
         keyExtractor={this.keyExtractor}
         numColumns={2}
+        columnWrapperStyle={styles.columnWrapperStyle}
       />
     );
   }

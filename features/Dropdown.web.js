@@ -36,8 +36,12 @@ class Dropdown extends PureComponent {
   render() {
     return (
       <span style={styles.span}>
-        <select style={styles.select}>
-          <option>Sort Articles</option>
+        <select style={styles.select} {...this.props}>
+          <option value="" hidden >Sort Articles</option>
+          <option value="topHeadlines">Top Headlines</option>
+          <option value="publishedAt">Published At</option>
+          <option value="relevancy">Relevancy</option>
+          <option value="popularity">Popularity</option>
         </select>
         <span style={styles.downArrow}>{'\u25BE'}</span>
       </span>

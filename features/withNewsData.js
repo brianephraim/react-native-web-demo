@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { combineReducers } from 'redux';
+import { combineReducers,compose } from 'redux';
+import withNewsApiSettings from './withNewsApiSettings';
+import fetchNewsApi from './fetchNewsApi';
 
 const mapStateToProps = ({ news }) => {
   return news;
@@ -36,7 +38,7 @@ export const newsReducers = {
       switch (action.type) {
         case 'SET_NEWS_DATA':
           console.log('action', action);
-          return action.articles.map(item => ({
+          return action.articles.filter(item => item.urlToImage && item.content).map(item => ({
             ...item,
             uriObject: { uri: item.urlToImage },
           }));
@@ -68,37 +70,47 @@ const connectNewsData = connect(
   mapDispatchToProps
 );
 
+const composedPreliminaryHoc = compose(
+  connectNewsData,
+  withNewsApiSettings,
+);
 function withNewsData(Comp) {
   class WithNewsData extends PureComponent {
     static propTypes = {
       setLoading: PropTypes.func.isRequired,
       setNewsData: PropTypes.func.isRequired,
+      sortBy: PropTypes.string.isRequired,
+      searchTerm: PropTypes.string.isRequired,
     };
-    async componentDidMount() {
+    async fetchNewsApi(){
       this.props.setLoading(true);
-      const url =
-        'https://newsapi.org/v2/top-headlines?' +
-        'country=us&' +
-        'apiKey=0750fd6773de4038bbcbb4d5d99083a9';
-      const req = new Request(url);
       let fetchResponse;
       try {
-        fetchResponse = await fetch(req).then(response => response.json());
-        if (fetchResponse.status !== 'ok') {
-          console.log(fetchResponse);
-          throw new Error(JSON.stringify(fetchResponse));
-        }
+        const {sortBy,searchTerm} = this.props;
+        fetchResponse = await fetchNewsApi({
+          sortBy,
+          searchTerm,
+        });
         this.props.setNewsData(fetchResponse);
       } catch (e) {
         console.warn('WithNewsData fetch error', e);
         this.props.setLoading(false);
       }
     }
+    componentDidMount() {
+      this.fetchNewsApi();
+    }
+    componentDidUpdate(prevProps) {
+      if (this.props.sortBy !== prevProps.sortBy || this.props.searchTerm !== prevProps.searchTerm) {
+        this.fetchNewsApi();
+      }
+    }
     render() {
       return <Comp {...this.props} />;
     }
   }
-  return connectNewsData(WithNewsData);
+
+  return composedPreliminaryHoc(WithNewsData);
 }
 
 export default withNewsData;
