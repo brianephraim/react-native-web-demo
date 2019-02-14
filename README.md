@@ -49,7 +49,7 @@ HTML and JS files placed in the `./dist` folder.
 Runs eslint to find errors, performance issue, and code mess.
 
 
-### `npm run pretter`
+### `npm run prettier`
 
 Cleans up your code and makes it consistent with
 whitespace and quote types.
