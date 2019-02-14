@@ -1,3 +1,5 @@
+See this app in action at [https://defualt.github.io/dia-homework/dist/](https://defualt.github.io/dia-homework/dist/).
+
 Boilerplate adapted from https://github.com/drgx/react-native-plus-web.  
 This provided a basic webpack setup  
 and basic app bootstrap for react-native-web.
