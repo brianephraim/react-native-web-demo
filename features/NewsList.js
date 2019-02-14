@@ -142,7 +142,6 @@ class NewsList extends PureComponent {
     return (
       <View style={styles.listWrap}>
         <FlatList
-          refreshing={this.props.isLoading}
           key={this.props.apiSettingsKey}
           onEndReached={this.onEndReached}
           stickyHeaderIndices={stickyHeaderIndices}
