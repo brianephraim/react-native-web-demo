@@ -23,7 +23,6 @@ function makeRootRelativePath(pathToAppend) {
 const pathDictPreProcessed = {
   entryFile: 'index.web.js',
   features: 'features',
-  vectorIcons: 'node_modules/react-native-vector-icons',
   dist: 'dist',
   templateHtml: 'features/bundling/template.html',
   nodeModules: 'node_modules',
