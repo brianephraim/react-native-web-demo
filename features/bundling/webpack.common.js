@@ -1,29 +1,39 @@
+/*
+  This module configures webpack for bundling this app in general.
+*/
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {
-  imageLoaderConfiguration,
-  babelLoaderConfiguration,
-  fontLoaderConfiguration,
-} = require('./loaderConfiguration');
 
 const {
   entryFilePath,
   distPath,
   templateHtmlPath,
   nodeModulesPath,
-  fontPath,
+  featuresPath,
 } = require('./paths');
 
 module.exports = {
   entry: {
     rnwApp: [entryFilePath],
-    vendor: ['react', 'react-dom', 'react-native-web', 'react-router-dom'],
-    font: [fontPath],
+    vendor: ['react', 'react-dom', 'react-native-web'],
   },
   module: {
     rules: [
-      babelLoaderConfiguration,
-      imageLoaderConfiguration,
-      fontLoaderConfiguration,
+      {
+        test: /\.js$/,
+        include: [entryFilePath, featuresPath],
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true,
+            plugins: ['react-native-web', 'syntax-dynamic-import'],
+            presets: [
+              '@babel/preset-env',
+              'module:metro-react-native-babel-preset',
+            ],
+          },
+        },
+      },
     ],
   },
   plugins: [

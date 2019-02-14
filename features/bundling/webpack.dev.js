@@ -1,3 +1,6 @@
+/*
+  This module configures webpack for bundling this app for development.
+*/
 const commonConfig = require('./webpack.common');
 const webpack = require('webpack');
 const merge = require('webpack-merge');

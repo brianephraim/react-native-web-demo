@@ -25,8 +25,8 @@ import Dropdown from './Dropdown';
 const styles = StyleSheet.create({
   headerWrap: {
     backgroundColor: '#454545',
-    flexDirection:'row',
-    justifyContent:'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   headerWrapInner: {
     maxWidth: 1040,
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     height: 64,
-    flex:1
+    flex: 1,
   },
   textInput: {
     backgroundColor: '#313131',
@@ -67,25 +67,25 @@ class NewsSearchBar extends PureComponent {
     sortBy: PropTypes.string.isRequired,
     searchTerm: PropTypes.string.isRequired,
   };
-  constructor({searchTerm}){
+  constructor({ searchTerm }) {
     super();
     this.state = {
-      searchTermEntry: searchTerm
+      searchTermEntry: searchTerm,
     };
   }
-  onChangeSort = (event) => {
+  onChangeSort = event => {
     this.props.setSortBy(event.target.value);
   };
-  onChangeSearchTermEntry = (event) => {
-    this.setState({searchTermEntry:event.target.value});
+  onChangeSearchTermEntry = event => {
+    this.setState({ searchTermEntry: event.target.value });
   };
-  onKeyPress = (event) => {
+  onKeyPress = event => {
     if (event.key === 'Enter') {
       event.preventDefault();
       event.stopPropagation();
       this.onPressSearch();
     }
-  }
+  };
   onPressSearch = () => {
     this.props.setSearchTerm(this.state.searchTermEntry);
   };
@@ -102,9 +102,7 @@ class NewsSearchBar extends PureComponent {
             onKeyPress={this.onKeyPress}
           />
           <Dropdown onChange={this.onChangeSort} value={this.props.sortBy} />
-          <TouchableOpacity
-            onPress={this.onPressSearch}
-          >
+          <TouchableOpacity onPress={this.onPressSearch}>
             <Text style={styles.formButton}>Search</Text>
           </TouchableOpacity>
         </View>

@@ -16,7 +16,7 @@ import withNewsData from '../withNews/withNewsData';
 
 const composedPreliminaryHoc = compose(
   withNewsData,
-  withNewsApiSettings,
+  withNewsApiSettings
 );
 function withNews(Comp) {
   class WithNews extends PureComponent {
@@ -29,11 +29,11 @@ function withNews(Comp) {
       totalResults: PropTypes.number.isRequired,
       currentPage: PropTypes.number.isRequired,
     };
-    async fetchNewsApi(page){
+    async fetchNewsApi(page) {
       this.props.setLoading(true);
       let fetchResponse;
       try {
-        const {sortBy,searchTerm} = this.props;
+        const { sortBy, searchTerm } = this.props;
         fetchResponse = await fetchNewsApi({
           sortBy,
           searchTerm,
@@ -41,7 +41,7 @@ function withNews(Comp) {
         });
         this.props.setNewsData({
           ...fetchResponse,
-          page
+          page,
         });
       } catch (e) {
         console.warn('WithNews fetch error', e);
@@ -52,18 +52,27 @@ function withNews(Comp) {
       this.fetchNewsApi();
     }
     componentDidUpdate(prevProps) {
-      if (this.props.sortBy !== prevProps.sortBy || this.props.searchTerm !== prevProps.searchTerm) {
+      if (
+        this.props.sortBy !== prevProps.sortBy ||
+        this.props.searchTerm !== prevProps.searchTerm
+      ) {
         this.fetchNewsApi();
       }
     }
     fetchNextPage = () => {
-      const {currentCount,totalResults,currentPage} = this.props;
-      if (currentCount < totalResults){
+      const { currentCount, totalResults, currentPage } = this.props;
+      if (currentCount < totalResults) {
         this.fetchNewsApi(currentPage + 1);
       }
     };
     render() {
-      return <Comp {...this.props} fetchNextPage={this.fetchNextPage} apiSettingsKey={`${this.props.sortBy}_${this.props.searchTerm}`} />;
+      return (
+        <Comp
+          {...this.props}
+          fetchNextPage={this.fetchNextPage}
+          apiSettingsKey={`${this.props.sortBy}_${this.props.searchTerm}`}
+        />
+      );
     }
   }
 

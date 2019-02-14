@@ -2,7 +2,7 @@
   This module provides an interface for interacting
   with newsapi.org.
 */
-async function fetchNewsApi({searchTerm,sortBy, page}){
+async function fetchNewsApi({ searchTerm, sortBy, page }) {
   /*
     By default use the "top-headlines" endpoint.
     "top-headlines" does not support sortBy.
@@ -18,11 +18,9 @@ async function fetchNewsApi({searchTerm,sortBy, page}){
   */
   sortBy = sortBy === 'topHeadlines' ? '' : sortBy;
 
-  const params = [
-    'apiKey=0750fd6773de4038bbcbb4d5d99083a9'
-  ];
-  let endpoint= 'everything';
-  if (!searchTerm && !sortBy){
+  const params = ['apiKey=0750fd6773de4038bbcbb4d5d99083a9'];
+  let endpoint = 'everything';
+  if (!searchTerm && !sortBy) {
     params.push('country=us');
     endpoint = 'top-headlines';
   }
@@ -63,12 +61,11 @@ async function fetchNewsApi({searchTerm,sortBy, page}){
       'usa-today',
     ];
     params.push(`sources=${sources.join(',')}`);
-
   }
   if (endpoint === 'everything') {
     params.push('language=en');
   }
-  if (page){
+  if (page) {
     params.push(`page=${page}`);
   }
   const url = `https://newsapi.org/v2/${endpoint}?${params.join('&')}`;

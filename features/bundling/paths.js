@@ -1,8 +1,7 @@
 /*
   This is a Node file so it uses common.js module system
   (uses `require` and `module.exports`)
-*/
-/*
+
   This file is nested as root/features/bundling/paths.js,
   but we want to generate a dictionary of paths relative to the root.
 */
@@ -25,7 +24,6 @@ const pathDictPreProcessed = {
   entryFile: 'index.web.js',
   features: 'features',
   vectorIcons: 'node_modules/react-native-vector-icons',
-  font: 'features/bundling/font.js',
   dist: 'dist',
   templateHtml: 'features/bundling/template.html',
   nodeModules: 'node_modules',

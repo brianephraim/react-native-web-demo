@@ -5,7 +5,7 @@
 import { combineReducers } from 'redux';
 
 import { newsReducers } from '../withNews/withNewsData';
-import { newsApiSettingsReducers } from '../withNews/withNewsApiSettings'
+import { newsApiSettingsReducers } from '../withNews/withNewsApiSettings';
 
 const rootReducer = combineReducers({
   ...newsReducers,

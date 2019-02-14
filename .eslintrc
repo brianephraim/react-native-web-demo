@@ -29,7 +29,6 @@
     "react/no-multi-comp": 0,
     "jsx-a11y/accessible-emoji": 0,
     "global-require": "off",
-    "xxxxxxxxxreact/prop-types": 0,
     "import/prefer-default-export": 0,
     "no-invalid-this": 0,
     "babel/no-invalid-this": 1,

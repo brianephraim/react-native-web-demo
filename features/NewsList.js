@@ -29,10 +29,10 @@ const styles = StyleSheet.create({
     paddingBottom: 26,
   },
   columnWrapperStyle: {
-    width:'100%',
+    width: '100%',
     minWidth: 670,
     maxWidth: 1040,
-    alignSelf:'center',
+    alignSelf: 'center',
     paddingTop: 26,
     paddingLeft: 37,
     paddingRight: 33,
@@ -106,7 +106,7 @@ class NewsList extends PureComponent {
               {item.title}
             </Text>
             <Text style={styles.text} numberOfLines={2}>
-              {`${item.content.slice(0,180).trim()}...`}
+              {`${item.content.slice(0, 180).trim()}...`}
             </Text>
           </View>
           <Text

@@ -33,11 +33,13 @@ const mapDispatchToProps = {
     }),
 };
 
-function parseArticles(articles){
-  return articles.filter(item => item.urlToImage && item.content).map(item => ({
-    ...item,
-    uriObject: { uri: item.urlToImage },
-  }));
+function parseArticles(articles) {
+  return articles
+    .filter(item => item.urlToImage && item.content)
+    .map(item => ({
+      ...item,
+      uriObject: { uri: item.urlToImage },
+    }));
 }
 export const newsReducers = {
   newsData: combineReducers({
@@ -55,10 +57,7 @@ export const newsReducers = {
       switch (action.type) {
         case 'SET_NEWS_DATA': {
           const parsedArticles = parseArticles(action.articles);
-          return !action.page ? parsedArticles : [
-            ...state,
-            ...parsedArticles,
-          ];
+          return !action.page ? parsedArticles : [...state, ...parsedArticles];
         }
         default:
           return state;
@@ -67,14 +66,16 @@ export const newsReducers = {
     currentCount: (state = 0, action) => {
       switch (action.type) {
         case 'SET_NEWS_DATA':
-          return !action.page ? action.articles.length : action.articles.length + state;
+          return !action.page
+            ? action.articles.length
+            : action.articles.length + state;
         default:
           return state;
       }
     },
     totalResults: (state = 0, action) => {
       switch (action.type) {
-        case 'SET_NEWS_DATA':{
+        case 'SET_NEWS_DATA': {
           return action.totalResults;
         }
 
@@ -97,7 +98,5 @@ const withNewsData = connect(
   mapStateToProps,
   mapDispatchToProps
 );
-
-
 
 export default withNewsData;
