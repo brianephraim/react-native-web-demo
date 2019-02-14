@@ -7,7 +7,7 @@
     "watch:web": "webpack-dev-server --config ./features/bundling/webpack.dev.js --hot --mode development",
     "build:dev": "webpack --config ./features/bundling/webpack.dev.js --mode development",
     "build:web": "webpack --config ./features/bundling/webpack.prod.js --mode production",
-    "eslint": "./node_modules/.bin/eslint ./",
+    "eslint": "./node_modules/.bin/eslint ./features",
     "prettier": "./node_modules/.bin/prettier --single-quote --trailing-comma es5 --write \"features/**/*.js\" \"index.web.js\""
   },
   "dependencies": {

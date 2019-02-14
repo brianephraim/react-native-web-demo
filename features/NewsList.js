@@ -30,6 +30,9 @@ import withNews from './withNews';
 import NewsSearchBar from './NewsSearchBar';
 
 const styles = StyleSheet.create({
+  listWrap: {
+    flex:1,
+  },
   list: {
     backgroundColor: '#EDECEC',
     width: '100%',
@@ -102,6 +105,7 @@ class NewsList extends PureComponent {
     articles: PropTypes.array.isRequired,
     fetchNextPage: PropTypes.func.isRequired,
     apiSettingsKey: PropTypes.string.isRequired,
+    isLoading: PropTypes.bool.isRequired,
   };
   onEndReached = () => {
     this.props.fetchNextPage();
@@ -137,9 +141,8 @@ class NewsList extends PureComponent {
   render() {
     console.log('tt', this.props);
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.listWrap}>
         <FlatList
-          style={{ flex: 1 }}
           refreshing={this.props.isLoading}
           key={this.props.apiSettingsKey}
           onEndReached={this.onEndReached}
