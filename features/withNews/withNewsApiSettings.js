@@ -45,7 +45,6 @@ export const newsApiSettingsReducers = {
     sortBy: (state = '', action) => {
       switch (action.type) {
         case 'SET_NEWS_SORT_BY':
-          console.log('action', action);
           return action.sortBy;
         default:
           return state;

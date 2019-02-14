@@ -139,7 +139,6 @@ class NewsList extends PureComponent {
     );
   };
   render() {
-    console.log('tt', this.props);
     return (
       <View style={styles.listWrap}>
         <FlatList

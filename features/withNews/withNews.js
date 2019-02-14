@@ -11,8 +11,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import withNewsApiSettings from '../withNews/withNewsApiSettings';
-import fetchNewsApi from '../fetchNewsApi';
-import withNewsData from '../withNews/withNewsData';
+import fetchNewsApi from './fetchNewsApi';
+import withNewsData from './withNewsData';
 
 const composedPreliminaryHoc = compose(
   withNewsData,
