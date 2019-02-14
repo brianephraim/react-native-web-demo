@@ -15,6 +15,7 @@
 
 import { connect } from 'react-redux';
 import { combineReducers } from 'redux';
+import uniqBy from 'lodash.uniqby';
 
 const mapStateToProps = ({ newsData }) => {
   return newsData;
@@ -57,7 +58,10 @@ export const newsReducers = {
       switch (action.type) {
         case 'SET_NEWS_DATA': {
           const parsedArticles = parseArticles(action.articles);
-          return !action.page ? parsedArticles : [...state, ...parsedArticles];
+          const arrayWithDupesMaybe = !action.page
+            ? parsedArticles
+            : [...state, ...parsedArticles];
+          return uniqBy(arrayWithDupesMaybe, item => item.url);
         }
         default:
           return state;

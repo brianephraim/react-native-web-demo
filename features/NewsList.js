@@ -18,7 +18,14 @@
 
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Text, View, StyleSheet, FlatList, Image } from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  FlatList,
+  Image,
+  ActivityIndicator,
+} from 'react-native';
 import withNews from './withNews';
 import NewsSearchBar from './NewsSearchBar';
 
@@ -81,6 +88,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
     borderRadius: 3,
   },
+  activityIndicator: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
 });
 
 const stickyHeaderIndices = [0];
@@ -122,19 +135,27 @@ class NewsList extends PureComponent {
     );
   };
   render() {
+    console.log('tt', this.props);
     return (
-      <FlatList
-        key={this.props.apiSettingsKey}
-        onEndReached={this.onEndReached}
-        stickyHeaderIndices={stickyHeaderIndices}
-        ListHeaderComponent={NewsSearchBar}
-        style={styles.list}
-        data={this.props.articles}
-        renderItem={this.renderItem}
-        keyExtractor={this.keyExtractor}
-        numColumns={2}
-        columnWrapperStyle={styles.columnWrapperStyle}
-      />
+      <View style={{ flex: 1 }}>
+        <FlatList
+          style={{ flex: 1 }}
+          refreshing={this.props.isLoading}
+          key={this.props.apiSettingsKey}
+          onEndReached={this.onEndReached}
+          stickyHeaderIndices={stickyHeaderIndices}
+          ListHeaderComponent={NewsSearchBar}
+          style={styles.list}
+          data={this.props.articles}
+          renderItem={this.renderItem}
+          keyExtractor={this.keyExtractor}
+          numColumns={2}
+          columnWrapperStyle={styles.columnWrapperStyle}
+        />
+        {this.props.isLoading && (
+          <ActivityIndicator style={styles.activityIndicator} />
+        )}
+      </View>
     );
   }
 }
