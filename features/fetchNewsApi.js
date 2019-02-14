@@ -1,4 +1,8 @@
-async function fetchNewsApi({searchTerm,sortBy}){
+/*
+  This module provides an interface for interacting
+  with newsapi.org.
+*/
+async function fetchNewsApi({searchTerm,sortBy, page}){
   /*
     By default use the "top-headlines" endpoint.
     "top-headlines" does not support sortBy.
@@ -63,6 +67,9 @@ async function fetchNewsApi({searchTerm,sortBy}){
   }
   if (endpoint === 'everything') {
     params.push('language=en');
+  }
+  if (page){
+    params.push(`page=${page}`);
   }
   const url = `https://newsapi.org/v2/${endpoint}?${params.join('&')}`;
   const req = new Request(url);

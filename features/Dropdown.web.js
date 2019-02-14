@@ -1,3 +1,16 @@
+/*
+  This module defines a Dropdown component for web.
+  This is needed because the react-native-web Picker component
+  wasn't good cross-browser.
+  This file has a `.web.js` extension.
+  If we wanted to make this app work for native iOs and Android,
+  we would make a file called `Dropdown.js` that would consist of
+    ```
+    import {Picker} from 'react-native';
+    export default Picker;
+    ```
+*/
+
 import React, { PureComponent } from 'react';
 
 const styles = {

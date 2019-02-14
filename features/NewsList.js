@@ -1,7 +1,25 @@
+/*
+  This module is a component that renders
+  an list of news articles.
+  The list is infinite scrollable,
+  and thanks to FlatList functionality,
+  items scrolled off screen will unmount
+  until scrolled back to improve memory efficiency.
+
+  The list items are hydrate with data via the
+  `withNews` HOC.
+
+  The list has 2 columns that have fluid width
+  with min and max widths.
+
+  A search header component is injected into this component.
+
+*/
+
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Text, View, StyleSheet, FlatList, Image } from 'react-native';
-import withNewsData from './withNewsData';
+import withNews from './withNews';
 import NewsSearchBar from './NewsSearchBar';
 
 const styles = StyleSheet.create({
@@ -69,9 +87,14 @@ const stickyHeaderIndices = [0];
 class NewsList extends PureComponent {
   static propTypes = {
     articles: PropTypes.array.isRequired,
+    fetchNextPage: PropTypes.func.isRequired,
+    apiSettingsKey: PropTypes.string.isRequired,
+  };
+  onEndReached = () => {
+    this.props.fetchNextPage();
   };
   keyExtractor = item => {
-    return item.title;
+    return item.url;
   };
   renderItem = ({ item }) => {
     return (
@@ -101,6 +124,8 @@ class NewsList extends PureComponent {
   render() {
     return (
       <FlatList
+        key={this.props.apiSettingsKey}
+        onEndReached={this.onEndReached}
         stickyHeaderIndices={stickyHeaderIndices}
         ListHeaderComponent={NewsSearchBar}
         style={styles.list}
@@ -114,4 +139,4 @@ class NewsList extends PureComponent {
   }
 }
 
-export default withNewsData(NewsList);
+export default withNews(NewsList);

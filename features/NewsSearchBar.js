@@ -1,3 +1,15 @@
+/*
+  This module is a search bar componenet.
+  Search settings from this component are propagated
+  to the rest of the app via methods injected from
+  the `withNewsApiSettings` HOC.
+
+  Usage of the sort dropdown will immediately change settings.
+  The searchTerms text input will only change settings
+  when either the return key is pressed,
+  or the Search button is pressed.
+*/
+
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -7,7 +19,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import withNewsApiSettings from './withNewsApiSettings';
+import withNewsApiSettings from './withNews/withNewsApiSettings';
 import Dropdown from './Dropdown';
 
 const styles = StyleSheet.create({
@@ -53,16 +65,27 @@ class NewsSearchBar extends PureComponent {
     setSearchTerm: PropTypes.func.isRequired,
     setSortBy: PropTypes.func.isRequired,
     sortBy: PropTypes.string.isRequired,
+    searchTerm: PropTypes.string.isRequired,
   };
-  state = {
-    searchTermEntry: '',
-  };
+  constructor({searchTerm}){
+    super();
+    this.state = {
+      searchTermEntry: searchTerm
+    };
+  }
   onChangeSort = (event) => {
     this.props.setSortBy(event.target.value);
   };
   onChangeSearchTermEntry = (event) => {
     this.setState({searchTermEntry:event.target.value});
   };
+  onKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      event.stopPropagation();
+      this.onPressSearch();
+    }
+  }
   onPressSearch = () => {
     this.props.setSearchTerm(this.state.searchTermEntry);
   };
@@ -76,6 +99,7 @@ class NewsSearchBar extends PureComponent {
             placeholderTextColor="#ffffff"
             value={this.state.searchTermEntry}
             onChange={this.onChangeSearchTermEntry}
+            onKeyPress={this.onKeyPress}
           />
           <Dropdown onChange={this.onChangeSort} value={this.props.sortBy} />
           <TouchableOpacity

@@ -1,3 +1,17 @@
+/*
+  This module is a higher-order-component (HOC).
+  It wraps other components.
+  Wrapped components will receive prop methods to
+  change the search settings values, and also it will
+  receive props for the values of those settings.
+
+  This module also exports redux reducers for these values.
+  The reducers, actions, and connection boilerplate
+  is co-located in this file for convenience
+  because the logic of these parts is intertwined,
+  and each part is very simple.
+*/
+
 import { connect } from 'react-redux';
 import { combineReducers } from 'redux';
 
