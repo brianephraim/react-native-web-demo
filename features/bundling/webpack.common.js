@@ -6,10 +6,7 @@ const {
 } = require('./loaderConfiguration');
 
 const {
-  rootDirectoryPath,
   entryFilePath,
-  featuresPath,
-  vectorIconsPath,
   distPath,
   templateHtmlPath,
   nodeModulesPath,

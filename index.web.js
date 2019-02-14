@@ -1,32 +1,7 @@
-import React from 'react';
 import { AppRegistry } from 'react-native';
-import { AppContainer } from 'react-hot-loader';
-// import App from 'shared/components/SharedComponent';
-// import App from 'shared/components/PlatformSpecific/PlatformComponent';
-// import App from './AppsNavigator.web';
-import App from './features/asdf';
+import AppEntry from './features/AppEntry';
 
-const renderApp = () => (
-  <AppContainer>
-    <App />
-  </AppContainer>
-);
-
-AppRegistry.registerComponent('ReactNativePlusWeb', () => renderApp);
-
-if (module.hot) {
-  // $FlowFixMe
-  module.hot.accept();
-
-  const renderHotApp = () => (
-    <AppContainer>
-      <App />
-    </AppContainer>
-  );
-
-  // App registration and rendering
-  AppRegistry.registerComponent('ReactNativePlusWeb', () => renderHotApp);
-}
+AppRegistry.registerComponent('ReactNativePlusWeb', () => AppEntry);
 
 AppRegistry.runApplication('ReactNativePlusWeb', {
   rootTag: document.getElementById('root'),

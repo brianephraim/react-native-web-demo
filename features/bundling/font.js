@@ -7,11 +7,11 @@ import Foundation from 'react-native-vector-icons/Fonts/Foundation.ttf';
  */
 const fontList = {
   Entypo,
-  ['Material Icons']: MaterialIcons,
-  ['fontcustom']: Foundation,
+  'Material Icons': MaterialIcons,
+  fontcustom: Foundation,
 };
 
-Object.keys(fontList).map(font => {
+Object.keys(fontList).forEach(font => {
   const iconFontStyles = `@font-face {
     src: url(${fontList[font]});
     font-family: ${font};

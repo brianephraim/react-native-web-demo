@@ -1,15 +1,7 @@
 const commonConfig = require('./webpack.common');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const {
-  rootDirectoryPath,
-  entryFilePath,
-  featuresPath,
-  vectorIconsPath,
-  distPath,
-  templateHtml,
-  nodeModulesPath,
-} = require('./paths');
+const { distPath } = require('./paths');
 
 const devServer = {
   contentBase: distPath,
