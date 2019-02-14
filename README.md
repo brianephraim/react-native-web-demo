@@ -13,10 +13,10 @@ something like "Published at.",
 because the default sort is "Top Headlines" which is limited in count
 by the api.
 
-This project adheres to feature-based organization feature.
+This project adheres to feature-based organization.
 All interesting code is found in the "features" folder.
 Features could be visual components, bootstrapping modules,
-bundling infrastructure, pretty much anything that's convenient
+bundling infrastructure -- pretty much anything that's convenient
 to consider a feature is treated as feature.
 
 `react-native-web` is used instead of vanilla `react`
@@ -25,8 +25,9 @@ and it provides the flexibility to port to native platforms.
 
 `eslint` is implemented with the `Airbnb` standards as a base,
 modified with `prettier` rules so that the linter doesn't
-complain about things that `prettier` fixes automatically.
-Some other `eslint` customization is in place.
+complain about things that `prettier` fixes automatically,
+also modified with performance ensurance rules,
+and also modified with other `eslint` customization is in place.
 
 ## commands
 
