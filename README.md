@@ -33,6 +33,10 @@ and also modified with other `eslint` customization is in place.
 
 ## commands
 
+### `npm install`
+
+Do this once to install dependencies.
+
 ### `npm run watch:web`
 
 Develop the app.  
