@@ -1,4 +1,4 @@
-See this app in action at [https://defualt.github.io/dia-homework/dist/](https://defualt.github.io/dia-homework/dist/).
+See this app in action at [https://defualt.github.io/react-native-web-demo/dist/index.html](https://defualt.github.io/react-native-web-demo/dist/index.html).
 
 Boilerplate adapted from https://github.com/drgx/react-native-plus-web.  
 This provided a basic webpack setup  
